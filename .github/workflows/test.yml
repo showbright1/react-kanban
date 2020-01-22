@@ -40,10 +40,9 @@ jobs:
       NODE_ENV: 'test'
     steps:
       - uses: actions/checkout@v1
-      - run: yarn
-      - run: NODE_ENV=cypress yarn server &
       - uses: cypress-io/github-action@v1
         with:
+          start: NODE_ENV=cypress yarn server
           browser: chrome
           headless: true
       - run: yarn nyc report --reporter=text-summary
